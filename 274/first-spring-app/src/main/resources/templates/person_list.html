@@ -12,7 +12,8 @@
     <p>Here is going to be some list of persons</p>
 
     <table>
-        <tr th:each="person : ${persons}">
+        <tr th:each="person, rowStat : ${persons}">
+            <td th:text="${rowStat.index}">Stat</td>
             <td th:text="${person.id}">ID</td>
             <td th:text="${person.firstName}">First Name</td>
             <td th:text="${person.lastName}">Last Name</td>
