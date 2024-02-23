@@ -1,47 +1,46 @@
 package az.edu.ada.wm2.firstspringapp.controller;
 
-import az.edu.ada.wm2.firstspringapp.configuration.Beans;
 import az.edu.ada.wm2.firstspringapp.model.Person;
+import az.edu.ada.wm2.firstspringapp.service.PersonService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @RequestMapping("/persons")
+@RequiredArgsConstructor
 public class PersonController {
 
-//    private Person defaultPerson = new Beans().getPersonBean();
-    @Autowired
-    private Person defaultPerson;
+    private final PersonService personService;
 
-    private Person secondPerson;
-
-    public PersonController(Person secondPerson){
-        this.secondPerson = secondPerson;
-    }
-
-//    @RequestMapping(value = "/", method = RequestMethod.GET)
-    @GetMapping
+    @GetMapping({"", "/"})
     public String listPersons(Model model){
-        System.out.println(defaultPerson);
-        System.out.println(secondPerson);
-        System.out.println(defaultPerson == secondPerson);
-
-        var list = List.of(
-                new Person("Ali", "Aliyev"),
-                new Person("Gulnara", "Azizova"),
-                new Person("Murad", "Ibrahimli"),
-                new Person("Laman", "Khudadatzada")
-        );
-
+        var list = personService.listPersons();
         model.addAttribute("persons", list);
         return "person_list";
     }
 
+    @GetMapping("/new")
+    public String newForm(Model model){
+        model.addAttribute("person", new Person("",""));
+        return "new_person_form";
+    }
+
+    @PostMapping("/save")
+    public String savePerson(Model model, @ModelAttribute("person") Person newPerson){
+        personService.addPerson(newPerson);
+        return "redirect:/persons";
+    }
+
+    @GetMapping("/delete/{idx}")
+    public String deletePerson(@PathVariable Integer idx ){
+        System.out.println(idx);
+        personService.deletePerson(idx);
+        return "redirect:/persons";
+    }
 }

@@ -15,8 +15,15 @@
             <td th:text="${rowStat.index}">No</td>
             <td th:text="${person.fName}">First Name</td>
             <td th:text="${person.lName}">Last Name</td>
+
+            <td>
+                <a th:href="@{/persons/delete/{idx}(idx=${rowStat.index})}">Delete</a>
+            </td>
+
         </tr>
     </table>
+
+    <a th:href="@{/persons/new}">Create a new person</a>
 
 </body>
 </html>
