@@ -18,7 +18,7 @@ public class ProductsController {
 
     @PostMapping("/addToOrder")
     public String addProductToOrder(Model model,
-                                    @ModelAttribute Order cart,
+                                    @ModelAttribute("cart") Order cart,
                                     @RequestParam("product") String productName) {
         if (!productName.isBlank())
             cart.addProduct(productName);

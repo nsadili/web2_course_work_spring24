@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<p th:if="${order} == null" th:text="The order is empty."></p>
+<p th:if="${order} == null">The order is empty.</p>
 
 <p th:if="${order} != null and ${#lists.isEmpty(order.products)}">The order is empty.</p>
 
@@ -20,7 +20,7 @@
     <li th:text="${product}">Product Id</li>
 </ul>
 
-<form action="#" method="POST" th:action="@{/orders/save}" th:object="${order}">
+<form action="#" method="POST" th:action="@{/order/save}" th:object="${order}">
     Enter your name:
     <input type="text" th:field="*{customerName}" placeholder="Customer name"/> <br/>
     <input type="submit" value="Save order"/>
