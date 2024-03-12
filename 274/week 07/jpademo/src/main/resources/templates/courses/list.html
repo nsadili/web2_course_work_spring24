@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h3>List of all the courses</h3>
+
+    <table>
+        <tr th:each="course : ${courses}">
+            <td th:text="${course.id}">ID</td>
+            <td th:text="${course.name}">NAME</td>
+            <td th:text="${course.credits}">CREDITS</td>
+        </tr>
+    </table>
+
+</body>
+</html>
