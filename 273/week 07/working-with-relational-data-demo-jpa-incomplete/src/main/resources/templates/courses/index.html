@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Courses</title>
+</head>
+<body>
+
+<h2>Courses list</h2>
+<a th:href="@{/course/new}">Add New Course</a>
+
+<table border="1px">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Credits</th>
+        <th>Actions</th>
+    </tr>
+
+    <p th:if="${courses} != null" th:text="|Number of available courses: ${#lists.size(courses)}|"></p>
+
+    <tr th:if="${#lists.isEmpty(courses)}">
+        <td colspan="4">The course list is empty</td>
+    </tr>
+    <tr th:each="course : ${courses}">
+        <td th:text="${course.id}">ID</td>
+        <td th:text="${course.name}">Name</td>
+        <td th:text="${course.description}">Description</td>
+        <td th:text="${course.credits}">#credits</td>
+        <td>
+            <th:block th:with="id=${course.id}">
+                <a th:href="@{'/course/update/' + ${id}}">Update</a>
+                <a th:href="@{'/course/delete/' + ${id}}">Delete</a>
+            </th:block>
+        </td>
+    </tr>
+</table>
+<a th:href="@{/}"> Back to HOME </a>
+</body>
+</html>
