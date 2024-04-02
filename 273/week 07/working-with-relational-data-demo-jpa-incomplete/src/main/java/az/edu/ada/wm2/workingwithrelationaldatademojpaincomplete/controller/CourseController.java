@@ -4,6 +4,7 @@ import az.edu.ada.wm2.workingwithrelationaldatademojpaincomplete.model.Course;
 import az.edu.ada.wm2.workingwithrelationaldatademojpaincomplete.service.CourseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ import java.util.List;
 public class CourseController {
     static final Logger LOGGER = LoggerFactory.getLogger(CourseController.class);
 
-    CourseService courseService;
+    private CourseService courseService;
 
     public CourseController(CourseService courseService) {
         this.courseService = courseService;

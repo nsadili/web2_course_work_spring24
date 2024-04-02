@@ -4,6 +4,8 @@ import lombok.*;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -21,6 +23,9 @@ public class Course {
     private String description;
 
     private Integer credits;
+
+    @ManyToMany
+    private Set<Student> students;
 
     public Course(String name, String description, Integer credits) {
         this.name = name;

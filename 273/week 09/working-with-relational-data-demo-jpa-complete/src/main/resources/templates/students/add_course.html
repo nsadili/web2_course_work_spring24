@@ -1,0 +1,37 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+</head>
+<body>
+
+<h2>Student: <span th:text="${student.firstName} + ' ' + ${student.lastName}"></span></h2>
+<h3>Courses</h3>
+<table border="1px">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Credits</th>
+    </tr>
+    <tr th:each="course : ${student.courses}">
+        <td th:text="${course.id}">ID</td>
+        <td th:text="${course.name}">Name</td>
+        <td th:text="${course.description}">Description</td>
+        <td th:text="${course.credits}">#credits</td>
+    </tr>
+</table>
+
+<h3>Available courses</h3>
+<select>
+    <option th:each="course : ${courses}"
+            th:text="${course.id} + ': ' + ${course.name} + ': ' + ${course.description}"
+            th:value="${course.id}"></option>
+</select>
+
+<br /><a th:href="@{/student/list}"> Back to list </a>
+</body>
+</html>
