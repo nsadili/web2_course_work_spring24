@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+<div th:if="${successMessage} != null" class="alert alert-success">
+    <p th:text="${successMessage}"></p>
+</div>
+
+<h2>Users list</h2>
+<a th:href="@{/user/new}">Add New User</a>
+
+<table border="1px">
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>CC Number</th>
+        <th>CC Expiration</th>
+        <th>CC CVV</th>
+        <th>Created At</th>
+
+        <th>Actions</th>
+    </tr>
+
+    <p th:if="${users} != null" th:text="|Number of available users: ${#lists.size(users)}|"></p>
+
+    <tr th:if="${#lists.isEmpty(users)}">
+        <td colspan="8">The user list is empty</td>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}">ID</td>
+        <td th:text="${user.username}">Username</td>
+        <td th:text="${user.email}">Email</td>
+        <td th:text="${user.mobile}">Mobile</td>
+        <td th:text="${user.ccNumber}">CC Number</td>
+        <td th:text="${user.ccExpiration}">CC Expiration</td>
+        <td th:text="${user.ccCVV}">CC CVV</td>
+        <td th:text="${user.createdAt}">Created At</td>
+        <td>
+            <th:block th:with="id=${user.id}">
+                <a th:href="@{'/user/update/' + ${id}}">Update</a>
+                <a th:href="@{'/user/delete/' + ${id}}">Delete</a>
+            </th:block>
+        </td>
+    </tr>
+</table>
+<a th:href="@{/}"> Back to HOME </a>
+</body>
+</html>

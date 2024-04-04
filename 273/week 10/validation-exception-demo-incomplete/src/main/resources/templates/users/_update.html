@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Update Person</title>
+</head>
+<body>
+
+<h2>Update the person</h2>
+
+<form action="#" method="POST" th:action="@{/course/}" th:object="${course}">
+    <input type="hidden" th:field="*{id}"/> <br/>
+    <input type="text" th:field="*{name}" placeholder="Name"/> <br/>
+    <input type="text" th:field="*{description}" placeholder="Description"/> <br/>
+    <input type="text" th:field="*{credits}" placeholder="Credits"/> <br/>
+    <input type="submit" value="Update Course"/>
+</form>
+
+<!--<a th:href="@{/list}">Back to the list</a>-->
+<a onclick="history.go(-1)">Back to the list</a>
+
+</body>
+</html>

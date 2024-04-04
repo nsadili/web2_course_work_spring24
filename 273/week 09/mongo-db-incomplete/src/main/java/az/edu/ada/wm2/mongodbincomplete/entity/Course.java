@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-@Document(value = "courses")
+@Document
 public class Course {
 
     @Id
@@ -29,6 +29,6 @@ public class Course {
 
     @Override
     public String toString() {
-        return "Course: [" + shortName + ", " + fullName + "]";
+        return "Course: [" + id + ", " + shortName + ", " + fullName + "]";
     }
 }

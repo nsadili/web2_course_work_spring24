@@ -24,6 +24,7 @@ public class Student {
 
     private Double grade;
 
+    @DBRef
     private List<Course> courses;
 
     public Student(String firstname, String lastname, Double grade) {
@@ -41,6 +42,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student: [" + firstname + ", " + lastname + ", " + grade + ", " + courses + "]";
+        return "Student: [" + id + ", " + firstname + ", " + lastname + ", " + grade + ", " + courses + "]";
     }
 }
