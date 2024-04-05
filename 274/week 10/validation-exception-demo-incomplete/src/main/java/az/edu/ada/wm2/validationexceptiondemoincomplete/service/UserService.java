@@ -13,6 +13,7 @@ import java.util.List;
 @Service
 public class UserService {
 
+
     @Autowired
     private UserRepo userRepo;
 
@@ -26,6 +27,9 @@ public class UserService {
     }
 
     public UserData findById(Long id) throws UserNotFoundException {
+
+//        if(id == 1) throw new RuntimeException("Dummy exception");
+
         return userRepo.findById(id).orElseThrow(
                 () -> new UserNotFoundException(String.format("User with id %s not found.", id)));
     }

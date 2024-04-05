@@ -23,6 +23,7 @@ public class UserData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @NotNull
     @Size(min = 5, max = 20, message = "Username must be of length [5-20]")
     private String username;
