@@ -14,10 +14,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
 @RequestMapping("/user")
+@Slf4j
 public class UserController {
 
     private final Logger LOG = LoggerFactory.getLogger(UserController.class);
@@ -26,15 +29,21 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/new")
-    public String showNewPage(Model model) {
+    public String showNewPag2e(Model model) {
+        LOG.info("AppLog. Show new page method started! {}", LocalDateTime.now());
         model.addAttribute("user", new UserData());
-        LOG.info("This is info log: New User form is displayed");
-        LOG.debug("This is debug log: New User form is displayed");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        LOG.info("AppLog. Show new page method ended! {}", LocalDateTime.now());
         return "users/new";
     }
 
     @PostMapping("/")
-    public String save(Model model, @ModelAttribute("user") @Valid UserData user, BindingResult bindingResult) {
+    public String save(Model model, @ModelAttribute("user") @Valid UserData user,
+                       BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "users/new";
 
